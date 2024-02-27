@@ -9,6 +9,8 @@ import java.util.Scanner;
  */
 public class Game {
 
+    private static final int INIT_RECEIVE_CARD_COUNT = 2;
+
     public void play() {
         System.out.println("========= Blackjack =========");
         Scanner sc = new Scanner(System.in);
@@ -19,6 +21,7 @@ public class Game {
         Rule rule = new Rule();
         CardDeck cardDeck = new CardDeck();
 
+        initPhase(cardDeck, gamer);
         playingPhase(sc, cardDeck, gamer);
     }
 
@@ -36,4 +39,17 @@ public class Game {
             gamer.receiveCard(card);
         }
     }
+
+    // 처음 시작시 Dealer와 Gamer가 2장씩 카드를 받는 역할
+    private void initPhase(CardDeck cardDeck, Gamer gamer) {
+        System.out.println("처음 2장의 카드를 각자 뽑겠습니다.");
+        // 매직너버를 피하기 위한 static 상수 사용
+        // 매직넘버 : 정체를 알 수 없지만 특정 기능을 하는 숫자
+        // 매직넘버 사용시 의미가 모호해지며 변경범위를 확인하기 어렵다.
+        for (int i = 0; i < INIT_RECEIVE_CARD_COUNT; i++) {
+            Card card = cardDeck.draw();
+            gamer.receiveCard(card);
+        }
+    }
+
 }
