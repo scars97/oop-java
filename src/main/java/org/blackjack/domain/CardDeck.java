@@ -3,6 +3,7 @@ package org.blackjack.domain;
 import lombok.Getter;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -23,8 +24,21 @@ public class CardDeck {
         cards = this.generateCards();
     }
 
+    public Card draw() {
+        Card selectedCard = getRandomCard();
+        cards.remove(selectedCard);
+        return selectedCard;
+    }
+
+    private Card getRandomCard() {
+        int size = cards.size();
+        int select = (int) (Math.random() * size);
+        return cards.get(select);
+    }
+
     private List<Card> generateCards() {
-        List<Card> cards = new ArrayList<>();
+        // draw한 카드는 카드덱에서 제거해야하므로 ArrayList 대신 LinkedList
+        List<Card> cards = new LinkedList<>();
 
         for (String pattern : PATTERNS) {
             for (int i = 1; i < CARD_COUNT; i++) {
