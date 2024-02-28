@@ -42,6 +42,8 @@ public class Game {
 
     private List<Player> receiveCardAllPlayers(Scanner sc, CardDeck cardDeck, List<Player> players) {
         for (Player player : players) {
+            System.out.println(player.getName() + "님 차례입니다.");
+
             if (isReceiveCard(sc)) {
                 Card card = cardDeck.draw();
                 player.receiveCard(card);
@@ -74,6 +76,7 @@ public class Game {
         // 매직너버를 피하기 위한 static 상수 사용
         for (int i = 0; i < INIT_RECEIVE_CARD_COUNT; i++) {
             for (Player player : players) {
+                System.out.println(player.getName()+"님 차례입니다.");
                 Card card = cardDeck.draw();
                 player.receiveCard(card);
             }
