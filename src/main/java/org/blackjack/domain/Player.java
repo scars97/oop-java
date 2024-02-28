@@ -9,4 +9,10 @@ public interface Player {
     void showCard();
 
     List<Card> openCards();
+
+    void turnOff();
+
+    void turnOn();
+
+    boolean isTurn();
 }

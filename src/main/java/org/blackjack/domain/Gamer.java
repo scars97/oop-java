@@ -1,5 +1,8 @@
 package org.blackjack.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,10 +13,11 @@ import java.util.List;
  * 뽑은 카드를 소유한다.
  * 카드를 오픈한다.
  */
+@Getter
+@Setter
 public class Gamer implements Player {
-
-
     private List<Card> cards;
+    private boolean turn;
 
     public Gamer() {
         cards = new ArrayList<>();
@@ -41,5 +45,20 @@ public class Gamer implements Player {
     @Override
     public List<Card> openCards() {
         return this.cards;
+    }
+
+    @Override
+    public void turnOff() {
+        this.setTurn(false);
+    }
+
+    @Override
+    public void turnOn() {
+        this.setTurn(true);
+    }
+
+    @Override
+    public boolean isTurn() {
+        return this.turn;
     }
 }
