@@ -9,8 +9,6 @@ public class Cafe {
 
     public void open() {
         System.out.println("========= Cafe =========");
-        Coffee coffee = new Coffee();
-        Tea tea = new Tea();
         Cashier cashier = new Cashier();
         Barista barista = new Barista();
     }
