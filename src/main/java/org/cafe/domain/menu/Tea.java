@@ -1,5 +1,8 @@
-package org.cafe.domain;
+package org.cafe.domain.menu;
 
+import lombok.Getter;
+
+@Getter
 public enum Tea {
     CHAMOMILE("T01", "캐모마일", 2500),
     EARL_GREY("T02", "얼그레이", 2500),
@@ -15,7 +18,7 @@ public enum Tea {
         this.price = price;
     }
 
-    public int getPoint() {
+    public int getPrice() {
         return this.price;
     }
 }
