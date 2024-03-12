@@ -1,5 +1,7 @@
 package org.cafe.domain;
 
+import org.cafe.domain.menu.Menu;
+
 import java.util.List;
 
 /**
@@ -8,7 +10,7 @@ import java.util.List;
  * 제작된 음료를 고객에게 전달한다.
  */
 public class Barista {
-    private List<?> menus; // TODO Coffee, Tea 담을 수 있는 객체 생성 필요
+    private List<Menu> menus;
     private boolean status;
 
 }

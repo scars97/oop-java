@@ -1,6 +1,7 @@
 package org.cafe.domain;
 
 import lombok.Getter;
+import org.cafe.domain.menu.Menu;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  */
 public class Customer {
     private Integer numberId;
-    private List<?> menu; // TODO Coffee, Tea 담을 수 있는 객체 생성 필요
+    private List<Menu> menus;
     private Integer cash;
     private boolean status;
 }
