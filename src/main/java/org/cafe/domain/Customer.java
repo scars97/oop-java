@@ -1,8 +1,5 @@
 package org.cafe.domain;
 
-import lombok.Getter;
-import org.cafe.domain.menu.Menu;
-
 import java.util.List;
 
 /**
@@ -13,7 +10,7 @@ import java.util.List;
  */
 public class Customer {
     private Integer numberId;
-    private List<Menu> menus;
+    private List<?> menus;
     private Integer cash;
     private boolean status;
 }
