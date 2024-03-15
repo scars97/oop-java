@@ -14,19 +14,27 @@ import java.util.List;
  */
 @Getter
 public class Customer {
-    private Integer numberId;
     private List<Menu> menus;
-    private Integer cash;
 
     public Customer() {
         this.menus = new ArrayList<>();
     }
 
-    public void pickDrink(Menu menu) {
+    public List<Menu> pickDrink(Menu menu) {
         this.menus.add(menu);
+        return this.menus;
     }
 
     public List<Menu> order() {
         return this.menus;
+    }
+
+    public int payment() {
+        int price = 0;
+        for (Menu menu : this.menus) {
+            price += menu.getPrice();
+        }
+
+        return price;
     }
 }

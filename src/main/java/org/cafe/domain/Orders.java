@@ -7,15 +7,15 @@ import java.util.List;
 @Getter
 public class Orders {
 
-    private List<Menu> orderList;
+    private List<Menu> menuList;
 
-    public List<Menu> addOrder(Menu order) {
-        this.orderList.add(order);
+    public List<Menu> addMenu(Menu order) {
+        this.menuList.add(order);
 
-        return this.orderList;
+        return this.menuList;
     }
 
-    public List<Menu> showOrders() {
-        return this.orderList;
+    public List<Menu> showMenus() {
+        return this.menuList;
     }
 }

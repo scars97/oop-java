@@ -1,9 +1,6 @@
 package org.cafe;
 
-import org.cafe.domain.Barista;
-import org.cafe.domain.Cashier;
-import org.cafe.domain.Customer;
-import org.cafe.domain.Menu;
+import org.cafe.domain.*;
 
 import java.util.Scanner;
 
