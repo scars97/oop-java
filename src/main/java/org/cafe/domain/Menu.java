@@ -3,7 +3,7 @@ package org.cafe.domain;
 import lombok.Getter;
 
 @Getter
-public enum Drink {
+public enum Menu {
 
     C01("C01", "아메리카노", 1500),
     C02("C02", "카페라떼", 2900),
@@ -17,9 +17,14 @@ public enum Drink {
     private String name;
     private Integer price;
 
-    Drink(String cd, String name, Integer price) {
+    Menu(String cd, String name, Integer price) {
         this.cd = cd;
         this.name = name;
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "[" + this.cd + "] " + this.name + " " + this.price;
     }
 }

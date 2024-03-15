@@ -1,5 +1,9 @@
 package org.cafe.domain;
 
+
+import lombok.Getter;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,9 +12,21 @@ import java.util.List;
  * 주문한 메뉴에 대한 돈을 지불한다.
  * 음료를 받는다.
  */
+@Getter
 public class Customer {
     private Integer numberId;
-    private List<?> menus;
+    private List<Menu> menus;
     private Integer cash;
-    private boolean status;
+
+    public Customer() {
+        this.menus = new ArrayList<>();
+    }
+
+    public void pickDrink(Menu menu) {
+        this.menus.add(menu);
+    }
+
+    public List<Menu> order() {
+        return this.menus;
+    }
 }

@@ -2,27 +2,32 @@ package org.cafe;
 
 import org.cafe.domain.Barista;
 import org.cafe.domain.Cashier;
-import org.cafe.domain.Drink;
+import org.cafe.domain.Customer;
+import org.cafe.domain.Menu;
+
+import java.util.Scanner;
 
 public class Cafe {
 
     public void open() {
         System.out.println("========= Cafe =========");
+        Scanner sc = new Scanner(System.in);
+
+        Customer customer = new Customer();
         Cashier cashier = new Cashier();
         Barista barista = new Barista();
 
         showMenu();
-        withoutMenu("C00");
     }
 
     public void showMenu() {
         StringBuilder sb = new StringBuilder();
 
         sb.append("-------- Menu --------\n");
-        Drink[] drinkList = Drink.values();
-        for (Drink drink : drinkList) {
-            String drinkString = "[" + drink.getCd() + "] " + drink.getName() + " " + drink.getPrice() + "\n";
-            sb.append(drinkString);
+        Menu[] menuList = Menu.values();
+        for (Menu menu : menuList) {
+            sb.append(menu.toString());
+            sb.append("\n");
         }
 
         System.out.println(sb);
@@ -30,8 +35,8 @@ public class Cafe {
 
     public void withoutMenu(String cd) {
         try {
-            Drink order = Drink.valueOf(cd);
-            System.out.println(order.getName());
+            Menu drink = Menu.valueOf(cd);
+            System.out.println(drink.getName());
         } catch (IllegalArgumentException e) {
             System.out.println("없는 메뉴");
         }

@@ -8,7 +8,5 @@ import java.util.List;
  * 제작된 음료를 고객에게 전달한다.
  */
 public class Barista {
-    private List<?> menus;
-    private boolean status;
-
+    private Orders orders;
 }

@@ -1,6 +1,5 @@
 package org.cafe.domain;
 
-import java.util.List;
 
 /**
  * 고객의 주문을 받는다.
@@ -9,6 +8,6 @@ import java.util.List;
  * 바리스타에게 음료 제작을 요청한다.
  */
 public class Cashier {
-    private List<?> menus;
+    private Orders orders;
     private Integer cash;
 }
