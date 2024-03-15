@@ -27,13 +27,4 @@ public class Orders {
 
         return sb.toString();
     }
-
-    public int amount() {
-        int price = 0;
-        for (Menu menu : this.menuList) {
-            price += menu.getPrice();
-        }
-
-        return price;
-    }
 }
