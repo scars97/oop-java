@@ -20,7 +20,7 @@ public class Customer {
         this.menus = new ArrayList<>();
     }
 
-    public List<Menu> pickDrink(Menu menu) {
+    public List<Menu> pickMenu(Menu menu) {
         this.menus.add(menu);
         return this.menus;
     }

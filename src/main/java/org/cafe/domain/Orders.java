@@ -15,7 +15,13 @@ public class Orders {
         return this.menuList;
     }
 
-    public List<Menu> showMenus() {
-        return this.menuList;
+    public String showMenus(List<Menu> menus) {
+        StringBuilder sb = new StringBuilder();
+
+        for (Menu menu : menus) {
+            sb.append(menu.getName() + " ");
+        }
+
+        return sb.toString();
     }
 }

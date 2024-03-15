@@ -2,6 +2,7 @@ package org.cafe;
 
 import org.cafe.domain.*;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Cafe {
@@ -13,8 +14,10 @@ public class Cafe {
         Customer customer = new Customer();
         Cashier cashier = new Cashier();
         Barista barista = new Barista();
+        Orders orders = new Orders();
 
         showMenu();
+        facing(sc, customer, orders);
     }
 
     public void showMenu() {
@@ -30,12 +33,41 @@ public class Cafe {
         System.out.println(sb);
     }
 
-    public void withoutMenu(String cd) {
+    public void facing(Scanner sc, Customer customer, Orders orders) {
+        String customerInput;
+        int menuCnt = customer.getMenus().size();
+
+        while (true) {
+            System.out.println("주문하실 메뉴를 선택해주세요. ex) C01 \n종료를 원하시면 0을 입력하세요.");
+            customerInput = sc.nextLine();
+
+            if ("0".equals(customerInput)) {
+                if (menuCnt == 0) {
+                    System.out.println("이용해주셔서 감사합니다.");
+                    break;
+                } else {
+                    String orderMenus = orders.showMenus(customer.getMenus());
+                    System.out.println("현재 주문 내역: \n" + orderMenus);
+                    break;
+                }
+            }
+
+            if (isMenu(customerInput)) {
+                Menu pickMenu = Menu.valueOf(customerInput);
+                List<Menu> menus = customer.pickMenu(pickMenu);
+                menuCnt = menus.size();
+            } else {
+                System.out.println("없는 메뉴입니다.");
+            }
+        }
+    }
+
+    public boolean isMenu(String cd) {
         try {
-            Menu drink = Menu.valueOf(cd);
-            System.out.println(drink.getName());
+            Menu.valueOf(cd);
+            return true;
         } catch (IllegalArgumentException e) {
-            System.out.println("없는 메뉴");
+            return false;
         }
     }
 }
