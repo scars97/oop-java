@@ -17,7 +17,7 @@ public class Cafe {
 
         showMenu();
         Orders customerOrder = initOrder(sc, orders);
-        payment(customerOrder);
+        payment(sc, customerOrder, cashier);
     }
 
     public void showMenu() {
@@ -33,8 +33,22 @@ public class Cafe {
         System.out.println(sb);
     }
 
-    public void payment(Orders orders) {
+    public void payment(Scanner sc, Orders orders, Cashier cashier) {
+        int customerInput;
 
+        int totalAmount = cashier.requestPayment(orders);
+        System.out.println("총 결제금액은 " + totalAmount + " 입니다. 결제금액을 입력해주세요.");
+
+        while (true) {
+            customerInput = sc.nextInt();
+            if (customerInput != totalAmount) {
+                System.out.println("금액이 맞지 않습니다. 다시 입력해주세요.");
+            } else {
+                int receiveAmount = cashier.responsePayment(customerInput);
+                System.out.println(receiveAmount + " 결제되었습니다. 잠시만 기다려주세요.");
+                break;
+            }
+        }
     }
 
     public Orders initOrder(Scanner sc, Orders orders) {
@@ -55,7 +69,7 @@ public class Cafe {
                 System.out.println("없는 메뉴입니다.");
             }
         }
-        System.out.println("주문내역: \n" + orders.showMenus() + "\n결제금액: " + orders.amount());
+        System.out.println("주문내역: \n" + orders.showMenus());
 
         return orders;
     }
