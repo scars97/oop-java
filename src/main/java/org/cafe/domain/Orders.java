@@ -14,10 +14,8 @@ public class Orders {
         this.menuList = new ArrayList<>();
     }
 
-    public List<Menu> addMenu(Menu order) {
+    public void addMenu(Menu order) {
         this.menuList.add(order);
-
-        return this.menuList;
     }
 
     public String showMenus() {
@@ -30,7 +28,7 @@ public class Orders {
         return sb.toString();
     }
 
-    public int payment() {
+    public int amount() {
         int price = 0;
         for (Menu menu : this.menuList) {
             price += menu.getPrice();

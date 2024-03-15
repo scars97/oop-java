@@ -2,10 +2,10 @@ package org.cafe;
 
 import org.cafe.domain.*;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class Cafe {
+    private static final String STOP_ORDER = "0";
 
     public void open() {
         System.out.println("========= Cafe =========");
@@ -16,7 +16,8 @@ public class Cafe {
         Orders orders = new Orders();
 
         showMenu();
-        facing(sc, orders);
+        Orders customerOrder = initOrder(sc, orders);
+        payment(customerOrder);
     }
 
     public void showMenu() {
@@ -32,35 +33,31 @@ public class Cafe {
         System.out.println(sb);
     }
 
-    // 고객 응대
-    public void facing(Scanner sc, Orders orders) {
+    public void payment(Orders orders) {
+
+    }
+
+    public Orders initOrder(Scanner sc, Orders orders) {
         String customerInput;
-        int menuCnt = orders.getMenuList().size();
 
         while (true) {
             System.out.println("주문하실 메뉴를 선택해주세요. ex) C01 \n종료를 원하시면 0을 입력하세요.");
             customerInput = sc.nextLine();
 
-            if ("0".equals(customerInput)) {
-                if (menuCnt == 0) {
-                    System.out.println("이용해주셔서 감사합니다.");
-                } else {
-                    // 주문내역
-                    String orderMenus = orders.showMenus();
-                    int totalPayment = orders.payment();
-                    System.out.println("현재 주문 내역: \n" + orderMenus + "\n총 결제 금액: " + totalPayment);
-                }
+            if (STOP_ORDER.equals(customerInput)) {
                 break;
             }
 
             if (isMenu(customerInput)) {
                 Menu pickMenu = Menu.valueOf(customerInput);
-                List<Menu> menus = orders.addMenu(pickMenu);
-                menuCnt = menus.size();
+                orders.addMenu(pickMenu);
             } else {
                 System.out.println("없는 메뉴입니다.");
             }
         }
+        System.out.println("주문내역: \n" + orders.showMenus() + "\n결제금액: " + orders.amount());
+
+        return orders;
     }
 
     public boolean isMenu(String cd) {
