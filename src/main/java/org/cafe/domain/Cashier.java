@@ -23,14 +23,14 @@ public class Cashier {
         return this.sales;
     }
 
-    public int responsePayment(int amount) {
-        this.sales += amount;
-        return amount;
-    }
-
     public int requestPayment(Orders orders) {
         List<Menu> menuList = orders.getMenuList();
         return amount(menuList);
+    }
+
+    public int responsePayment(int amount) {
+        this.sales += amount;
+        return amount;
     }
 
     public int amount(List<Menu> menuList) {

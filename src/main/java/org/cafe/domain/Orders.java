@@ -14,15 +14,15 @@ public class Orders {
         this.menuList = new ArrayList<>();
     }
 
-    public void addMenu(Menu order) {
-        this.menuList.add(order);
+    public void addOrder(Menu menu) {
+        this.menuList.add(menu);
     }
 
-    public String showMenus() {
+    public String showOrderList() {
         StringBuilder sb = new StringBuilder();
 
         for (Menu menu : this.menuList) {
-            sb.append(menu.getName() + " ");
+            sb.append(menu.getName()).append(" ");
         }
 
         return sb.toString();
