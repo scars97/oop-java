@@ -2,6 +2,7 @@ package org.cafe;
 
 import org.cafe.domain.*;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Cafe {
@@ -16,9 +17,13 @@ public class Cafe {
         Orders orders = new Orders();
 
         showMenu();
+
         Orders customerOrder = initOrder(sc, orders);
-        Orders paidOrder = payment(sc, customerOrder, cashier);
-        manufacturing(orders, cashier, barista);
+        Orders completeOrder = payment(sc, customerOrder, cashier);
+        List<Menu> completion = manufacturing(completeOrder, barista);
+
+        result(completion);
+        System.out.println("보유 금액: " + cashier.showSales());
     }
 
     public void showMenu() {
@@ -86,6 +91,19 @@ public class Cafe {
         return orders;
     }
 
-    private void manufacturing(Orders orders, Cashier cashier, Barista barista) {
+    private List<Menu> manufacturing(Orders orders, Barista barista) {
+        return barista.manufacturing(orders);
+    }
+
+    private void result(List<Menu> menus) {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("주문하신 ");
+        for (Menu menu : menus) {
+            sb.append(menu.getName()).append(" ");
+        }
+        sb.append("나왔습니다.");
+
+        System.out.println(sb);
     }
 }
