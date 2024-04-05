@@ -21,10 +21,40 @@ public class Orders {
     public String showOrderList() {
         StringBuilder sb = new StringBuilder();
 
+        // TODO 중복 메뉴 출력 수정
         for (Menu menu : this.menuList) {
-            sb.append(menu.getName()).append(" ");
+            String menuName = menu.getName();
+            String menuCd = menu.getCd();
+
+            if (isDuplicate(menuCd)) {
+                String count = countOfDuplicateMenu(menuCd);
+                menuName = menuName.concat("x" + count);
+            }
+
+            sb.append(menuName).append(" ");
         }
 
         return sb.toString();
+    }
+
+    private String countOfDuplicateMenu(String cd) {
+        int count = 0;
+
+        for (Menu menu : this.menuList) {
+            if (cd.equals(menu.getCd())) {
+                count++;
+            }
+        }
+
+        return String.valueOf(count);
+    }
+
+    private Boolean isDuplicate(String cd) {
+        for (Menu inMenu : this.menuList) {
+            if (cd.equals(inMenu.getCd())) {
+                return true;
+            }
+        }
+        return false;
     }
 }
