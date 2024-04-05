@@ -13,9 +13,9 @@ public enum Menu {
     T02("T02", "아메리카노", 2500),
     T03("T03", "유자차", 2300);
 
-    private String cd;
-    private String name;
-    private Integer price;
+    private final String cd;
+    private final String name;
+    private final Integer price;
 
     Menu(String cd, String name, Integer price) {
         this.cd = cd;
