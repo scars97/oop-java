@@ -22,8 +22,9 @@ public class Cafe {
         Orders completeOrder = payment(sc, customerOrder, cashier);
         List<Menu> completion = manufacturing(completeOrder, barista);
 
-        result(completion);
-        System.out.println("보유 금액: " + cashier.showSales());
+        String result = result(completion);
+        System.out.println(result + "\n" + "보유 금액: " + cashier.showSales());
+        sc.close();
     }
 
     public void showMenu() {
@@ -83,7 +84,7 @@ public class Cafe {
                 System.out.println("금액이 맞지 않습니다. 다시 입력해주세요.");
             } else {
                 int receiveAmount = cashier.responsePayment(customerInput);
-                System.out.println(receiveAmount + " 결제되었습니다. 잠시만 기다려주세요.");
+                System.out.println(receiveAmount + " 결제되었습니다. 음료를 제조합니다. 잠시만 기다려주세요.");
                 isPayment = true;
             }
         }
@@ -95,7 +96,7 @@ public class Cafe {
         return barista.manufacturing(orders);
     }
 
-    private void result(List<Menu> menus) {
+    private String result(List<Menu> menus) {
         StringBuilder sb = new StringBuilder();
 
         sb.append("주문하신 ");
@@ -104,6 +105,6 @@ public class Cafe {
         }
         sb.append("나왔습니다.");
 
-        System.out.println(sb);
+        return sb.toString();
     }
 }
