@@ -27,7 +27,7 @@ public class Orders {
             String menuCd = menu.getCd();
 
             if (isDuplicate(menuCd)) {
-                String count = countOfDuplicateMenu(menuCd);
+                int count = countOfDuplicateMenu(menuCd);
                 menuName = menuName.concat("x" + count);
             }
 
@@ -37,7 +37,7 @@ public class Orders {
         return sb.toString();
     }
 
-    private String countOfDuplicateMenu(String cd) {
+    private int countOfDuplicateMenu(String cd) {
         int count = 0;
 
         for (Menu menu : this.menuList) {
@@ -46,7 +46,7 @@ public class Orders {
             }
         }
 
-        return String.valueOf(count);
+        return count;
     }
 
     private Boolean isDuplicate(String cd) {
