@@ -3,7 +3,9 @@ package org.cafe.domain;
 import lombok.Getter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Getter
 public class Orders {
@@ -21,17 +23,29 @@ public class Orders {
     public String showOrderList() {
         StringBuilder sb = new StringBuilder();
 
+        Map<String, Integer> duplicateMenu = new HashMap<>();
+
         // TODO 중복 메뉴 출력 수정
         for (Menu menu : this.menuList) {
             String menuName = menu.getName();
             String menuCd = menu.getCd();
 
             if (isDuplicate(menuCd)) {
-                int count = countOfDuplicateMenu(menuCd);
-                menuName = menuName.concat("x" + count);
+                if (duplicateMenu.containsKey(menuCd)) {
+                    duplicateMenu.put(menuCd, duplicateMenu.get(menuCd) + 1);
+                } else {
+                    duplicateMenu.put(menuCd, 1);
+                }
+            } else {
+                sb.append(menuName).append(" ");
             }
+        }
 
-            sb.append(menuName).append(" ");
+        for (Map.Entry<String, Integer> entry : duplicateMenu.entrySet()) {
+            Menu menu = Menu.valueOf(entry.getKey());
+            int count = entry.getValue();
+
+            sb.append(menu.getName()).append("x").append(count);
         }
 
         return sb.toString();
