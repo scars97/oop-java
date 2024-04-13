@@ -27,4 +27,16 @@ public enum Menu {
     public String toString() {
         return "[" + this.cd + "] " + this.name + " " + this.price;
     }
+
+    public static void showMenu() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("-------- Menu --------\n");
+        Menu[] menuList = Menu.values();
+        for (Menu menu : menuList) {
+            sb.append(menu.toString()).append("\n");
+        }
+
+        System.out.println(sb);
+    }
 }

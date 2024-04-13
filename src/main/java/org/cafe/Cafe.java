@@ -16,7 +16,7 @@ public class Cafe {
         Barista barista = new Barista();
         Orders orders = new Orders();
 
-        showMenu();
+        Menu.showMenu();
 
         Orders customerOrder = initOrder(sc, orders);
         Orders completeOrder = payment(sc, customerOrder, cashier);
@@ -27,17 +27,7 @@ public class Cafe {
         sc.close();
     }
 
-    public void showMenu() {
-        StringBuilder sb = new StringBuilder();
 
-        sb.append("-------- Menu --------\n");
-        Menu[] menuList = Menu.values();
-        for (Menu menu : menuList) {
-            sb.append(menu.toString()).append("\n");
-        }
-
-        System.out.println(sb);
-    }
 
     public Orders initOrder(Scanner sc, Orders orders) {
         String customerInput;
