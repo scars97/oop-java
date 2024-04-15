@@ -2,10 +2,7 @@ package org.cafe.domain;
 
 import lombok.Getter;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Getter
 public class Orders {
@@ -23,44 +20,30 @@ public class Orders {
     public String showOrderList() {
         StringBuilder sb = new StringBuilder();
 
-        Map<String, Integer> duplicateMenu = new HashMap<>();
-
-        // TODO 중복 메뉴 출력 수정
-        for (Menu menu : this.menuList) {
-            String menuName = menu.getName();
-            String menuCd = menu.getCd();
-
-            if (isDuplicate(menuCd)) {
-                if (duplicateMenu.containsKey(menuCd)) {
-                    duplicateMenu.put(menuCd, duplicateMenu.get(menuCd) + 1);
-                } else {
-                    duplicateMenu.put(menuCd, 1);
-                }
-            } else {
-                sb.append(menuName).append(" ");
-            }
-        }
+        Map<String, Integer> duplicateMenu = duplicateSort();
 
         for (Map.Entry<String, Integer> entry : duplicateMenu.entrySet()) {
             Menu menu = Menu.valueOf(entry.getKey());
             int count = entry.getValue();
 
-            sb.append(menu.getName()).append("x").append(count);
+            sb.append(menu.getName()).append("x").append(count).append(" ");
         }
 
         return sb.toString();
     }
 
-    private int countOfDuplicateMenu(String cd) {
-        int count = 0;
+    private Map<String, Integer> duplicateSort() {
+        Map<String, Integer> duplicateMenu = new HashMap<>();
 
         for (Menu menu : this.menuList) {
-            if (cd.equals(menu.getCd())) {
-                count++;
+            String menuCd = menu.getCd();
+
+            if (isDuplicate(menuCd)) {
+                duplicateMenu.put(menuCd, duplicateMenu.getOrDefault(menuCd, 0) + 1);
             }
         }
 
-        return count;
+        return duplicateMenu;
     }
 
     private Boolean isDuplicate(String cd) {
