@@ -5,6 +5,8 @@ import org.cafe.domain.*;
 import java.util.List;
 import java.util.Scanner;
 
+import static org.cafe.domain.Menu.*;
+
 public class Cafe {
     private static final String STOP_ORDER = "0";
 
@@ -16,18 +18,16 @@ public class Cafe {
         Barista barista = new Barista();
         Orders orders = new Orders();
 
-        Menu.showMenu();
+        showMenu();
 
         Orders customerOrder = initOrder(sc, orders);
         Orders completeOrder = payment(sc, customerOrder, cashier);
-        List<Menu> completion = manufacturing(completeOrder, barista);
+        List<Menu> completion = barista.manufacturing(completeOrder);
 
         String result = result(completion);
         System.out.println(result + "\n" + "보유 금액: " + cashier.showSales());
         sc.close();
     }
-
-
 
     public Orders initOrder(Scanner sc, Orders orders) {
         String customerInput;
@@ -41,7 +41,7 @@ public class Cafe {
             }
 
             if (isMenu(customerInput)) {
-                Menu pickMenu = Menu.valueOf(customerInput);
+                Menu pickMenu = valueOf(customerInput);
                 orders.addOrder(pickMenu);
             } else {
                 System.out.println("없는 메뉴입니다.");
@@ -54,7 +54,7 @@ public class Cafe {
 
     public boolean isMenu(String cd) {
         try {
-            Menu.valueOf(cd);
+            valueOf(cd);
             return true;
         } catch (IllegalArgumentException e) {
             return false;
@@ -80,10 +80,6 @@ public class Cafe {
         }
 
         return orders;
-    }
-
-    private List<Menu> manufacturing(Orders orders, Barista barista) {
-        return barista.manufacturing(orders);
     }
 
     private String result(List<Menu> menus) {
