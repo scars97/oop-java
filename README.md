@@ -13,5 +13,5 @@
 - 클래스 관점이 아닌 메시지를 주고받는 객체의 관점으로 보자.
   - 클래스는 협력에 참여하는 객체를 만드는 데 필요한 구현 메커니즘일 뿐이다.
 
-- [블랙잭](src/main/java/org/blackjack)
-- [카페](src/main/java/org/cafe)
+[블랙잭](src/main/java/org/blackjack)
+[카페](src/main/java/org/cafe)
